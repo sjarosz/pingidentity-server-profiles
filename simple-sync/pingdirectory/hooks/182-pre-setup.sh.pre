@@ -31,12 +31,12 @@ echo "**************************************************************************
 #mkdir -p /opt/out/instance/lib/extensions
 
 # Copy the JAR file to the correct location
-cp /opt/out/instance/unboundid-ldapsdk.jar /opt/out/instance/lib/extensions/
+cp /opt/staging/pd.profile/server-root/pre-setup/unboundid-ldapsdk.jar /opt/out/instance/lib/extensions/
 chmod +x /opt/out/instance/lib/extensions/unboundid-ldapsdk.jar
 # Create the groovy-scripts directory if it doesn't exist
 #mkdir -p /opt/out/instance/lib/groovy-scripted-extensions/
 
 # Copy the Groovy script
-cp /opt/out/instance/groovy-staging/HelloWorldPlugin.groovy /opt/out/instance/lib/groovy-scripted-extensions/
+cp /opt/staging/pd.profile/server-root/pre-setup/groovy-staging/HelloWorldPlugin.groovy /opt/out/instance/lib/groovy-scripted-extensions/
 # Set proper permissions
 chmod +x /opt/out/instance/lib/groovy-scripted-extensions/HelloWorldPlugin.groovy
