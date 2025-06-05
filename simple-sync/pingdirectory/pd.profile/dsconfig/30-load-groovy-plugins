@@ -1,10 +1,13 @@
-dsconfig set-plugin-prop \
-  --plugin-name ExampleScriptedPlugin \
-  --reset plugin-type \
+dsconfig create-plugin \
+  --plugin-name "ExampleScriptedPlugin" \
+  --type groovy-scripted \
+  --set script-class:ExampleScriptedPlugin \
+  --set "script-argument:attribute=description" \
   --set plugin-type:preparseadd \
   --set plugin-type:preparsecompare \
   --set plugin-type:preparsemodify \
   --set plugin-type:preparsemodifydn \
   --set plugin-type:preparsesearch \
   --set plugin-type:searchresultentry \
+  --set enabled:true \
   --no-prompt
