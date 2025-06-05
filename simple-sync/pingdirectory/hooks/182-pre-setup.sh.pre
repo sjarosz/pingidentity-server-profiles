@@ -39,4 +39,4 @@ echo "**************************************************************************
 # Copy the Groovy script
 cp /opt/staging/pd.profile/server-root/pre-setup/ExampleScriptedPlugin.groovy /opt/out/instance/lib/groovy-scripted-extensions/
 # Set proper permissions
-chmod +x /opt/out/instance/lib/groovy-scripted-extensions/HelloWorldPlugin.groovy
+chmod +x /opt/out/instance/lib/groovy-scripted-extensions/ExampleScriptedPlugin.groovy
