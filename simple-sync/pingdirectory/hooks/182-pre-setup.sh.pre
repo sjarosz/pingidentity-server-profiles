@@ -22,3 +22,21 @@ else
     echo_red "ERROR: the base is expected to be dc=<your domain> or o=<your org>"
     exit 183
 fi
+
+echo "****************************************************************************************************************"
+echo "Hello from the baseline server profile 99-deploy-groovy-scripts.sh hook!"
+echo "****************************************************************************************************************"
+
+# Create the extensions directory if it doesn't exist
+#mkdir -p /opt/out/instance/lib/extensions
+
+# Copy the JAR file to the correct location
+cp /opt/out/instance/unboundid-ldapsdk.jar /opt/out/instance/lib/extensions/
+chmod +x /opt/out/instance/lib/extensions/unboundid-ldapsdk.jar
+# Create the groovy-scripts directory if it doesn't exist
+#mkdir -p /opt/out/instance/lib/groovy-scripted-extensions/
+
+# Copy the Groovy script
+cp /opt/out/instance/groovy-staging/HelloWorldPlugin.groovy /opt/out/instance/lib/groovy-scripted-extensions/
+# Set proper permissions
+chmod +x /opt/out/instance/lib/groovy-scripted-extensions/HelloWorldPlugin.groovy
