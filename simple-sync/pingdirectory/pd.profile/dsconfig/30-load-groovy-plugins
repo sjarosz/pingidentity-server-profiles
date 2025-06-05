@@ -1,0 +1,10 @@
+dsconfig set-plugin-prop \
+  --plugin-name ExampleScriptedPlugin \
+  --reset plugin-type \
+  --set plugin-type:preparseadd \
+  --set plugin-type:preparsecompare \
+  --set plugin-type:preparsemodify \
+  --set plugin-type:preparsemodifydn \
+  --set plugin-type:preparsesearch \
+  --set plugin-type:searchresultentry \
+  --no-prompt
