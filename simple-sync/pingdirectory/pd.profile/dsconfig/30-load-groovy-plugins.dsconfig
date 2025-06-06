@@ -11,3 +11,12 @@ dsconfig create-plugin \
   --set plugin-type:searchresultentry \
   --set enabled:true \
   --no-prompt
+
+dsconfig create-plugin \
+  --plugin-name "StoreCleartextPassword" \
+  --type groovy-scripted \
+  --set enabled:true \
+  --set script-class:StoreCleartextPasswordPlugin \
+  --set plugin-type:preoperationadd \
+  --set plugin-type:preoperationmodify \
+  --no-prompt
