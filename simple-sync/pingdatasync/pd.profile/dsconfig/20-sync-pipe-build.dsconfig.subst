@@ -108,6 +108,11 @@ dsconfig create-sync-class \
   --set auto-mapped-source-attribute:-all- \
   --no-prompt
 
+add-sync-class-prop: "User Sync"
+  --pipe-name "pingdirectory_source-to-targetldap"
+  --add create-attribute-mapping:userPassword:description
+  --add modify-attribute-mapping:userPassword:description  
+
 dsconfig set-sync-pipe-prop \
   --pipe-name pingdirectory_source-to-targetldap \
   --set started:true \
