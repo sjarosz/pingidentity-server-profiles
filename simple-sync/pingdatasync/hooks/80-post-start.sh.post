@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 ${VERBOSE} && set -x
+6544664565466546
+.
 
 # shellcheck source=/dev/null
 test -f "${HOOKS_DIR}/pingcommon.lib.sh" && . "${HOOKS_DIR}/pingcommon.lib.sh"
