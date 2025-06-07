@@ -99,14 +99,14 @@ dsconfig create-dn-map \
     --no-prompt
 
 dsconfig create-sync-class \
-    --pipe-name pingdirectory_source-to-targetldap  \
-    --class-name mySyncClass  \
-    --set dn-map:source_to_targetldap  \
-    --set ignore-zero-length-values:true  \
-    --set modifies-as-creates:true  \
-    --set creates-as-modifies:true \
-    --set auto-mapped-source-attribute:-all- \
-    --no-prompt
+  --pipe-name pingdirectory_source-to-targetldap \
+  --class-name "User Sync" \
+  --set dn-map:source_to_targetldap \
+  --set ignore-zero-length-values:true \
+  --set modifies-as-creates:true \
+  --set creates-as-modifies:true \
+  --set auto-mapped-source-attribute:-all- \
+  --no-prompt
 
 dsconfig set-sync-pipe-prop \
   --pipe-name pingdirectory_source-to-targetldap \
