@@ -37,9 +37,4 @@ dsconfig create-plugin \
   --no-prompt
 
 
-  dsconfig set-log-publisher-prop \
-  --publisher-name "File-Based Debug Logger" \
-  --set debug-logging-class:com.unboundid.directory.sdk.examples.groovy.StoreCleartextPasswordPlugin \
-  --no-prompt
-
 
