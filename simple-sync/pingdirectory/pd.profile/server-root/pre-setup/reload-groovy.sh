@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-SRC="/opt/staging/pd.profile/server-root/pre-setup/"   # live-edit bind mount on the host
+SRC="/opt/out/instance"   # live-edit bind mount on the host
 DST="/opt/out/instance/lib/groovy-scripted-extensions"
 
 echo "🛈  Copying Groovy scripts from $SRC to $DST …"
