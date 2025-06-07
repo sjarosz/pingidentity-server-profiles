@@ -1,3 +1,18 @@
+dsconfig set-log-publisher-prop \
+  --publisher-name "File-Based Debug Logger" \
+  --set enabled:true \
+  --no-prompt
+
+
+  dsconfig create-log-publisher \
+  --publisher-name "File-Based Debug Logger" \
+  --type file-based-debug \
+  --set enabled:true \
+  --set log-file:"logs/debug.log" \
+  --set logging-level:verbose \
+  --no-prompt
+
+
 dsconfig create-plugin \
   --plugin-name "ExampleScriptedPlugin" \
   --type groovy-scripted \
@@ -12,7 +27,6 @@ dsconfig create-plugin \
   --set enabled:false \
   --no-prompt
 
-
 dsconfig create-plugin \
   --plugin-name "StoreCleartextPassword" \
   --type groovy-scripted \
@@ -21,3 +35,11 @@ dsconfig create-plugin \
   --set plugin-type:preparsemodify \
   --set enabled:true \
   --no-prompt
+
+
+  dsconfig set-log-publisher-prop \
+  --publisher-name "File-Based Debug Logger" \
+  --set debug-logging-class:com.unboundid.directory.sdk.examples.groovy.StoreCleartextPasswordPlugin \
+  --no-prompt
+
+
