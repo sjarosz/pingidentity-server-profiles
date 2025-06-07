@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 ${VERBOSE} && set -x
-6544664565466546
-.
+
+echo "6544664565466546" > /tmp/targetldap-password.txt
 
 # shellcheck source=/dev/null
 test -f "${HOOKS_DIR}/pingcommon.lib.sh" && . "${HOOKS_DIR}/pingcommon.lib.sh"
