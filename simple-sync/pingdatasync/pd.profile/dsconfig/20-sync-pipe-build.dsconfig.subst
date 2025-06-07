@@ -54,3 +54,62 @@ dsconfig create-sync-class \
     --set modifies-as-creates:true  \
     --set creates-as-modifies:true \
     --set auto-mapped-source-attribute:-all-
+
+
+dsconfig create-passphrase-provider \
+  --provider-name targetldap-pass \
+  --type file-based \
+  --set enabled:true \
+  --set password-file:/opt/out/instance/targetldap-password.txt \
+  --no-prompt
+
+
+dsconfig create-external-server \
+  --server-name target-openldap \
+  --type ldap \
+  --set server-host-name:targetldap \
+  --set server-port:389 \
+  --set authentication-method:simple \
+  --set bind-dn:"cn=admin,dc=example,dc=com" \
+  --set passphrase-provider:targetldap-pass \
+  --no-prompt
+
+
+dsconfig create-sync-destination \
+  --destination-name external-openldap-target \
+  --type generic-ldap \
+  --set base-dn:dc=example,dc=com \
+  --set server:target-openldap \
+  --no-prompt
+
+
+dsconfig create-sync-pipe \
+    --pipe-name pingdirectory_source-to-targetldap  \
+    --set sync-source:pingdirectory_source  \
+    --set sync-destination:external-openldap-target  \
+    --set "change-detection-polling-interval:500 ms"  \
+    --set num-worker-threads:1 \
+    --no-prompt
+
+
+dsconfig create-dn-map \
+    --map-name source_to_targetldap  \
+    --set 'from-dn-pattern:**,ou=source,dc=example,dc=com' \
+    --set 'to-dn-pattern:{1},dc=example,dc=com' \
+    --no-prompt
+
+dsconfig create-sync-class \
+    --pipe-name pingdirectory_source-to-targetldap  \
+    --class-name mySyncClass  \
+    --set dn-map:source_to_targetldap  \
+    --set ignore-zero-length-values:true  \
+    --set modifies-as-creates:true  \
+    --set creates-as-modifies:true \
+    --set auto-mapped-source-attribute:-all- \
+    --no-prompt
+
+dsconfig set-sync-pipe-prop \
+  --pipe-name pingdirectory_source-to-targetldap \
+  --set started:true \
+  --no-prompt
+
