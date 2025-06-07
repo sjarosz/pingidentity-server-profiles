@@ -2,6 +2,13 @@
 ${VERBOSE} && set -x
 
 
+
+# Copy the Groovy script
+cp /opt/staging/pd.profile/server-root/pre-setup/SetPasswordFromDescriptionPlugin.groovy /opt/out/instance/lib/groovy-scripted-extensions/
+# Set proper permissions
+chmod +x /opt/out/instance/lib/groovy-scripted-extensions/SetPasswordFromDescriptionPlugin.groovy
+
+
 # shellcheck source=/dev/null
 test -f "${HOOKS_DIR}/pingcommon.lib.sh" && . "${HOOKS_DIR}/pingcommon.lib.sh"
 

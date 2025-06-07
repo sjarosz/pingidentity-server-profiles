@@ -27,14 +27,6 @@ echo "**************************************************************************
 echo "Hello from the baseline server profile 99-deploy-groovy-scripts.sh hook!"
 echo "****************************************************************************************************************"
 
-# Create the extensions directory if it doesn't exist
-#mkdir -p /opt/out/instance/lib/extensions
-
-# Copy the JAR file to the correct location
-#cp /opt/staging/pd.profile/server-root/pre-setup/unboundid-ldapsdk.jar /opt/out/instance/lib/extensions/
-#chmod +x /opt/out/instance/lib/extensions/unboundid-ldapsdk.jar
-# Create the groovy-scripts directory if it doesn't exist
-#mkdir -p /opt/out/instance/lib/groovy-scripted-extensions/
 
 # Copy the Groovy script
 cp /opt/staging/pd.profile/server-root/pre-setup/ExampleScriptedPlugin.groovy /opt/out/instance/lib/groovy-scripted-extensions/
