@@ -118,19 +118,4 @@ dsconfig set-sync-class-prop \
   --add dn-map:"source-to-target-dn-map" \
   --no-prompt  
 
-dsconfig create-sync-destination-plugin \
-  --plugin-name "SetPasswordFromDescriptionPlugin" \
-  --type groovy-scripted-ldap \
-  --set "script-class:SetPasswordFromDescriptionPlugin" \
-  --no-prompt
 
-dsconfig set-sync-destination-prop \
-  --destination-name "external-openldap-target" \
-  --add "plugin:SetPasswordFromDescriptionPlugin" \
-  --no-prompt
-
-
-dsconfig set-sync-pipe-prop \
-  --pipe-name pingdirectory_source-to-targetldap \
-  --set started:true \
-  --no-prompt
