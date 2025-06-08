@@ -82,6 +82,15 @@ dsconfig create-sync-destination \
   --set server:target-openldap \
   --no-prompt
 
+dsconfig create-sync-class \
+  --pipe-name "pingdirectory_source-to-targetldap" \
+  --class-name "users" \
+  --set auto-mapped-source-attribute:-all- \
+  --set include-base-dn:"ou=people,ou=source,dc=example,dc=com" \
+  --set include-filter:"(objectClass=person)" \
+  --set destination-correlation-attributes:uid \
+  --set evaluation-order-index:100 \
+  --no-prompt
 
 dsconfig create-sync-pipe \
     --pipe-name pingdirectory_source-to-targetldap  \
@@ -92,11 +101,19 @@ dsconfig create-sync-pipe \
     --no-prompt
 
 
+# First, create a DN map to transform the DN structure
 dsconfig create-dn-map \
-    --map-name source_to_targetldap  \
-    --set 'from-dn-pattern:**,ou=source,dc=example,dc=com' \
-    --set 'to-dn-pattern:{1},dc=example,dc=com' \
-    --no-prompt
+  --map-name "source-to-target-dn-map" \
+  --set from-dn-pattern:"**,ou=people,ou=source,dc=example,dc=com" \
+  --set to-dn-pattern:"{1},ou=People,dc=example,dc=com" \
+  --no-prompt
+
+# Then associate this DN map with your sync class
+dsconfig set-sync-class-prop \
+  --pipe-name "pingdirectory_source-to-targetldap" \
+  --class-name "users" \
+  --add dn-map:"source-to-target-dn-map" \
+  --no-prompt  
 
 dsconfig create-sync-destination-plugin \
   --plugin-name "SetPasswordFromDescriptionPlugin" \
