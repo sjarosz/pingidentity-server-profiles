@@ -12,14 +12,7 @@ dsconfig create-plugin \
   --set enabled:false \
   --no-prompt
 
-dsconfig create-plugin \
-  --plugin-name "StoreCleartextPassword" \
-  --type groovy-scripted \
-  --set script-class:StoreCleartextPasswordPlugin \
-  --set plugin-type:preparseadd \
-  --set plugin-type:preparsemodify \
-  --set enabled:true \
-  --no-prompt
+
 
 
 
