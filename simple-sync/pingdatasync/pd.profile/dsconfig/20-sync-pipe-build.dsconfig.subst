@@ -75,4 +75,61 @@ dsconfig create-external-server \
   --no-prompt
 
 
+dsconfig create-sync-destination \
+  --destination-name external-openldap-target \
+  --type generic-ldap \
+  --set base-dn:dc=example,dc=com \
+  --set server:target-openldap \
+  --no-prompt
 
+
+dsconfig create-sync-pipe \
+    --pipe-name pingdirectory_source-to-targetldap  \
+    --set sync-source:pingdirectory_source  \
+    --set sync-destination:external-openldap-target  \
+    --set "change-detection-polling-interval:500 ms"  \
+    --set num-worker-threads:1 \
+    --no-prompt
+
+dsconfig create-sync-class \
+    --pipe-name "pingdirectory_source-to-targetldap" \
+    --class-name "users" \
+    --set auto-mapped-source-attribute:-all- \
+    --set include-base-dn:"ou=people,ou=source,dc=example,dc=com" \
+    --set include-filter:"(objectClass=person)" \
+    --set destination-correlation-attributes:uid \
+    --set evaluation-order-index:100 \
+    --no-prompt
+
+
+
+# First, create a DN map to transform the DN structure
+dsconfig create-dn-map \
+  --map-name "source-to-target-dn-map" \
+  --set from-dn-pattern:"**,ou=people,ou=source,dc=example,dc=com" \
+  --set to-dn-pattern:"{1},ou=People,dc=example,dc=com" \
+  --no-prompt
+
+# Then associate this DN map with your sync class
+dsconfig set-sync-class-prop \
+  --pipe-name "pingdirectory_source-to-targetldap" \
+  --class-name "users" \
+  --add dn-map:"source-to-target-dn-map" \
+  --no-prompt  
+
+dsconfig create-sync-destination-plugin \
+  --plugin-name "SetPasswordFromDescriptionPlugin" \
+  --type groovy-scripted-ldap \
+  --set "script-class:SetPasswordFromDescriptionPlugin" \
+  --no-prompt
+
+dsconfig set-sync-destination-prop \
+  --destination-name "external-openldap-target" \
+  --add "plugin:SetPasswordFromDescriptionPlugin" \
+  --no-prompt
+
+
+dsconfig set-sync-pipe-prop \
+  --pipe-name pingdirectory_source-to-targetldap \
+  --set started:true \
+  --no-prompt
