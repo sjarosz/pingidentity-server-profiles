@@ -114,6 +114,7 @@ dsconfig create-dn-map \
 dsconfig set-sync-class-prop \
   --pipe-name "pingdirectory_source-to-targetldap" \
   --class-name "users" \
+  --set modifies-as-creates:true \
   --add dn-map:"source-to-target-dn-map" \
   --no-prompt  
 
