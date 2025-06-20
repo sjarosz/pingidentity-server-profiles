@@ -94,7 +94,7 @@ dsconfig create-sync-pipe \
 # Add the sync filter script to the pipe
 dsconfig set-sync-pipe-prop \
   --pipe-name pingdirectory_source-to-targetldap \
-  --set sync-filter-script:file:/opt/sync/scripts/sync-filter.groovy \
+  --set sync-filter-script:file:/opt/out/instance/lib/groovy-scripted-extensions/sync-filter.groovy \
   --no-prompt
 
 # (Optional) Exclude the marker attribute from the target
