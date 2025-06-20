@@ -91,18 +91,6 @@ dsconfig create-sync-pipe \
     --set num-worker-threads:1 \
     --no-prompt
 
-# Add the sync filter script to the pipe
-dsconfig set-sync-pipe-prop \
-  --pipe-name pingdirectory_source-to-targetldap \
-  --set sync-filter-script:file:/opt/out/instance/lib/groovy-scripted-extensions/sync-filter.groovy \
-  --no-prompt
-
-# (Optional) Exclude the marker attribute from the target
-dsconfig set-sync-pipe-prop \
-  --pipe-name pingdirectory_source-to-targetldap \
-  --set exclude-attribute:telephoneNumber \
-  --no-prompt
-
 dsconfig create-sync-class \
     --pipe-name "pingdirectory_source-to-targetldap" \
     --class-name "users" \
