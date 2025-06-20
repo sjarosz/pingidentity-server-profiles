@@ -8,6 +8,10 @@ cp /opt/staging/pd.profile/server-root/pre-setup/SetPasswordFromDescriptionPlugi
 # Set proper permissions
 chmod +x /opt/out/instance/lib/groovy-scripted-extensions/SetPasswordFromDescriptionPlugin.groovy
 
+# Copy the Groovy script
+cp /opt/staging/pd.profile/server-root/pre-setup/sync-filter.groovy /opt/out/instance/lib/groovy-scripted-extensions/
+# Set proper permissions
+chmod +x /opt/out/instance/lib/groovy-scripted-extensions/sync-filter.groovy
 
 # shellcheck source=/dev/null
 test -f "${HOOKS_DIR}/pingcommon.lib.sh" && . "${HOOKS_DIR}/pingcommon.lib.sh"
